@@ -23,7 +23,7 @@
 
     <div class="container">
 
-      @include('shared._messages')
+      @include('share._messages')
 
       @yield('content')
 
