@@ -45,27 +45,14 @@ class TopicsController extends Controller
         return redirect()->route('topics.show', $topic->id)->with('success', '帖子创建成功！');
     }
 
-	public function edit(Topic $topic)
-	{
-        $this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
-	}
-
-	public function update(TopicRequest $request, Topic $topic)
-	{
-		$this->authorize('update', $topic);
-		$topic->update($request->all());
-
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
-	}
-
 	public function destroy(Topic $topic)
-	{
-		$this->authorize('destroy', $topic);
-		$topic->delete();
+    {
+        $this->authorize('destroy', $topic);
+        $topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
-	}
+        return redirect()->route('topics.index')->with('success', '成功删除！');
+    }
+
 	public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
         // 初始化返回数据，默认是失败的
